@@ -7,9 +7,9 @@
 	</cmds>
     </Element>
     
-    <Element shortcut="CTRL+8" id="note">
+    <Element shortcut="CTRL+8" id="current_file_np">
         <cmds>
-            <cmd env ="WIN" value="notepad" />
+            <cmd env ="WIN" value="notepad __CURRENT_FILE__" />
         </cmds>
      </Element>
 

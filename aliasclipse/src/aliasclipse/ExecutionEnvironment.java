@@ -28,6 +28,7 @@ public class ExecutionEnvironment
 {
 	private static final String ENCLOSING_TYPE = "__ENCLOSING_TYPE__";
 	private static final String ENCLOSING_PROJ = "__ENCLOSING_PROJ__";
+	private static final String CURRENT_FILE   = "__CURRENT_FILE__";
 	
 	private final ArrayList<String> myCommands;
 	private final ArrayList<MenuItem.ENV> myEnvs;
@@ -78,6 +79,7 @@ public class ExecutionEnvironment
 		
     	string = string.replaceAll(ENCLOSING_PROJ, getProjName());
     	string = string.replaceAll(ENCLOSING_TYPE, getFileElementWithoutExtn());
+    	string = string.replaceAll(CURRENT_FILE, getFullOSPath());
     	
 		return string;
 	}
