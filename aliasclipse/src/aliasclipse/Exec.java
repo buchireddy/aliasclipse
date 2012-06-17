@@ -38,7 +38,7 @@ public class Exec
         try {
             JSch jsch = new JSch();
             JSch.setConfig("StrictHostKeyChecking", "no");
-            jsch.addIdentity("H:\\.ssh\\id_rsa");
+//            jsch.addIdentity("H:\\.ssh\\id_rsa");
 
             String host = System.getProperty("ssh.host");
             
@@ -49,8 +49,8 @@ public class Exec
             
             String user = System.getProperty("user.name");
 
-            InputStream is = new FileInputStream("H:\\.ssh\\known_hosts");
-            jsch.setKnownHosts(is);
+//            InputStream is = new FileInputStream("H:\\.ssh\\known_hosts");
+//            jsch.setKnownHosts(is);
             Session session = jsch.getSession(user, host, 22);
 
             // username and password will be given via UserInfo interface.
