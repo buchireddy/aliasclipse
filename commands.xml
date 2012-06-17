@@ -7,9 +7,9 @@
 	</cmds>
     </Element>
     
-    <Element shortcut="CTRL+8" id="dir">
+    <Element shortcut="CTRL+8" id="note">
         <cmds>
-            <cmd env ="WIN" value="dir" />
+            <cmd env ="WIN" value="notepad" />
         </cmds>
      </Element>
 
