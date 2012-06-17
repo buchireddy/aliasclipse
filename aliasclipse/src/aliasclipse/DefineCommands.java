@@ -28,7 +28,7 @@ public class DefineCommands extends ExtensionContributionFactory
         MenuManager menuManager = new MenuManager("Aliasclipse");
         
         ArrayList<MenuItem> list =
-        		XMLFileParser.parseDocument("H:\\hackathon\\commands.xml");
+        		XMLFileParser.parseDocument(System.getProperty("configfile"));
         
         for (int  i=0; i< list.size(); i++) {
         	MenuItem item = list.get(i);
