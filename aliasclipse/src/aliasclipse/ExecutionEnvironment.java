@@ -1,5 +1,6 @@
 package aliasclipse;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -78,6 +79,12 @@ public class ExecutionEnvironment
 
     private boolean runWinCommand(String command)
     {
+        try {
+            Runtime.getRuntime().exec(command);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
     

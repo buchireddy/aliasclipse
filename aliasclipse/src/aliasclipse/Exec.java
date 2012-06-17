@@ -40,7 +40,13 @@ public class Exec
             JSch.setConfig("StrictHostKeyChecking", "no");
             jsch.addIdentity("H:\\.ssh\\id_rsa");
 
-            String host = System.getProperty("host");
+            String host = System.getProperty("ssh.host");
+            
+            if (host == null) {
+                host = JOptionPane.showInputDialog("Enter hostname", "invest8.hyd");
+                System.setProperty("ssh.host", host);
+            }
+            
             String user = System.getProperty("user.name");
 
             InputStream is = new FileInputStream("H:\\.ssh\\known_hosts");
@@ -50,9 +56,8 @@ public class Exec
             // username and password will be given via UserInfo interface.
             UserInfo ui = new MyUserInfo();
             session.setUserInfo(ui);
-            String pass = System.getProperty("password");
-//            byte[] data = encrypt(pass);
-
+            
+            String pass = System.getProperty("ssh.pass");
             session.setPassword(pass);
             session.connect();
 
@@ -120,6 +125,8 @@ public class Exec
                     JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
                 passwd = passwordField.getText();
+                
+                System.setProperty("ssh.pass", passwd);
                 return true;
             } else {
                 return false;
