@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Elements>
-        <Element shortcut="CTRL+9" id="lscommand">
-			<cmds>
-				<cmd env ="UNIX" value="ls" />
-				<cmd env ="UNIX" value="date" />
-			</cmds>
-        </Element>
-		
-		<Element shortcut="CTRL+8" id="note">
-			<cmds>
-				<cmd env ="WIN" value="notepad" />
-			</cmds>
-        </Element>
-		
-		<Element shortcut="CTRL+7" id="opengrok">
-			<cmds>
-				<cmd env ="ECLIPSE" value="http://opengrok.hyd.deshaw.com/__ENCLOSING_PROJ__/search?q=__ENCLOSING_TYPE__" />
-			</cmds>
-        </Element>
+    <Element shortcut="CTRL+9" id="lscommand">
+        <cmds>
+	    <cmd env ="UNIX" value="ls" />
+            <cmd env ="UNIX" value="date" />
+	</cmds>
+    </Element>
+    
+    <Element shortcut="CTRL+8" id="dir">
+        <cmds>
+            <cmd env ="WIN" value="dir" />
+        </cmds>
+     </Element>
+
+    <Element shortcut="CTRL+6" id="opengrok_local">
+        <cmds>
+            <cmd env ="ECLIPSE" value="http://opengrok.hyd.deshaw.com/__ENCLOSING_PROJ__/search?q=__ENCLOSING_TYPE__" />
+        </cmds>
+    </Element>
+
+    <Element shortcut="CTRL+SHIFT+6" id="opengrok_external">
+        <cmds>
+            <cmd env ="WIN" value="http://opengrok.hyd.deshaw.com/__ENCLOSING_PROJ__/search?q=__ENCLOSING_TYPE__" />
+        </cmds>
+    </Element>
 </Elements>

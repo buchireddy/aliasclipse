@@ -92,16 +92,21 @@ public class ExecutionEnvironment
 		return null;
 	}
 
-	private boolean runEclipseAction(String string)
+	private boolean runEclipseAction(String command)
     {
-		if (string.contains("http:")) {
-			showInInternalBrowser(string);
+		if (command.contains("http:")) {
+			showInInternalBrowser(command);
 		}
         return true;        
     }
 
     private boolean runWinCommand(String command)
     {
+    	if (command.contains("http:")) {
+			showInExternalBrowser(command);
+			return true;
+		}
+    	
         try {
             Runtime.getRuntime().exec(command);
         } catch (IOException e) {
