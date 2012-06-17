@@ -26,14 +26,12 @@ import aliasclipse.XMLFileParser.MenuItem;
  */
 public class ExecutionEnvironment
 {
+	private static final String ENCLOSING_TYPE = "__ENCLOSING_TYPE__";
+	private static final String ENCLOSING_PROJ = "__ENCLOSING_PROJ__";
+	
 	private final ArrayList<String> myCommands;
 	private final ArrayList<MenuItem.ENV> myEnvs;
 	
-    private String mySelectedText;
-    private String mySelectedPath;
-    private String myEnclosingDir;
-    private String myEnclosingMethod;
-
     private IWorkbench myWorkbench = PlatformUI.getWorkbench();
     private IWorkbenchWindow myActiveWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
     
@@ -53,15 +51,16 @@ public class ExecutionEnvironment
         test();
         
         for (int i = 0; i < myCommands.size(); i++) {
-            switch(myEnvs.get(i)) {
+            String command = interpolate(myCommands.get(i));
+			switch(myEnvs.get(i)) {
             case UNIX:
-                runUnixCommand(myCommands.get(i));
+                runUnixCommand(command);
                 break;
             case WIN:
-                runWinCommand(myCommands.get(i));
+                runWinCommand(command);
                 break;
             case ECLIPSE:
-                runEclipseAction(myCommands.get(i));
+                runEclipseAction(command);
                 break;
             default:
                 System.out.println("Invalid mapping in the xml file. No env: "
@@ -72,8 +71,32 @@ public class ExecutionEnvironment
         return true;
     }
     
-    private boolean runEclipseAction(String string)
+    /**
+     * Interpolates variables in the command.
+     */
+    private String interpolate(String string) {
+		
+    	string = string.replaceAll(ENCLOSING_PROJ, getProjName());
+    	string = string.replaceAll(ENCLOSING_TYPE, getFileElementWithoutExtn());
+    	
+		return string;
+	}
+
+    /**
+     * Returns current project name.
+     */
+	private String getProjName() {
+		if (getCurrentFile() != null) {
+			return getCurrentFile().getProject().getName().toLowerCase();
+		}
+		return null;
+	}
+
+	private boolean runEclipseAction(String string)
     {
+		if (string.contains("http:")) {
+			showInInternalBrowser(string);
+		}
         return true;        
     }
 
