@@ -90,13 +90,12 @@ public class ExecutionEnvironment
      */
     private String getEnclosingTextOrType()
     {
-    	if (getSelectedText() != null) {
+    	if (getSelectedText() != null && !getSelectedText().trim().isEmpty()) {
     		return getSelectedText();
     	}
     	else {
     		return getFileElementWithoutExtn();
-    	}
-    	
+    	}    	
     }
     
     /**
