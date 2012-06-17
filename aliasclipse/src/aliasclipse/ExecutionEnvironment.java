@@ -110,6 +110,7 @@ public class ExecutionEnvironment
 		}
     	
         try {
+        	System.out.println(command + " is running");
             Runtime.getRuntime().exec(command);
         } catch (IOException e) {
             e.printStackTrace();
@@ -142,7 +143,9 @@ public class ExecutionEnvironment
     public String getFullOSPath()
     {
         if (getCurrentFile() != null) {
-            return getCurrentFile().getLocation().toOSString();
+        	String path = getCurrentFile().getLocation().toOSString();
+        	path = path.replaceAll("\\\\", "\\\\\\\\");
+        	return path;
         }
         return null;
     }
