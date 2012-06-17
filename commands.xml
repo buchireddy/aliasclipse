@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Elements>
-    <Element shortcut="CTRL+9" id="lscommand">
+    <Element shortcut="CTRL+9" id="grep">
         <cmds>
-	    <cmd env ="UNIX" value="ls" />
-            <cmd env ="UNIX" value="date" />
+            <cmd env ="UNIX" value="grep -r __SELECTED_TEXT__ /proj/infra/base/src/java/deshaw/smart/swift | head -5" />
 	</cmds>
     </Element>
     
