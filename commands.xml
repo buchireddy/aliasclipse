@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Elements>
+        <Element shortcut="CTRL+9" id="lscommand">
+			<cmds>
+				<cmd env ="UNIX" value="ls" />
+				<cmd env ="UNIX" value="date" />
+			</cmds>
+        </Element>
+		
+		<Element shortcut="CTRL+8" id="dir">
+			<cmds>
+				<cmd env ="WIN" value="dir" />
+			</cmds>
+        </Element>
+		
+		<Element shortcut="CTRL+7" id="opengrok">
+			<cmds>
+				<cmd env ="ECLIPSE" value="http://opengrok/base" />
+			</cmds>
+        </Element>
+</Elements>
