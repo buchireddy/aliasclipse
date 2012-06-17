@@ -1,7 +1,12 @@
 
 package aliasclipse;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
@@ -25,10 +30,20 @@ public class DefineCommands extends ExtensionContributionFactory
     public void createContributionItems(IServiceLocator serviceLocator,
                                         IContributionRoot additions)
     {
+//        Properties config = new Properties();
+//        try {
+//            config.load(new FileInputStream("H:\\.eclipseConfig"));
+//        }
+//        catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
         MenuManager menuManager = new MenuManager("Aliasclipse");
         
         ArrayList<MenuItem> list =
-        		XMLFileParser.parseDocument(System.getProperty("configfile"));
+        		XMLFileParser.parseDocument("H:\\commands.xml");
         
         for (int  i=0; i< list.size(); i++) {
         	MenuItem item = list.get(i);

@@ -11,7 +11,6 @@ import java.io.UnsupportedEncodingException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Properties;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -41,10 +40,7 @@ public class Exec
             JSch.setConfig("StrictHostKeyChecking", "no");
             jsch.addIdentity("H:\\.ssh\\id_rsa");
 
-            Properties config = new Properties();
-            config.load(new FileInputStream("H:\\.eclipseConfig"));
-
-            String host = config.getProperty("host");
+            String host = System.getProperty("host");
             String user = System.getProperty("user.name");
 
             InputStream is = new FileInputStream("H:\\.ssh\\known_hosts");
@@ -54,10 +50,10 @@ public class Exec
             // username and password will be given via UserInfo interface.
             UserInfo ui = new MyUserInfo();
             session.setUserInfo(ui);
-            String pass = config.getProperty("password");
+            String pass = System.getProperty("password");
 //            byte[] data = encrypt(pass);
 
-            session.setPassword(config.getProperty("password"));
+            session.setPassword(pass);
             session.connect();
 
             Channel channel = session.openChannel("exec");
