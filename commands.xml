@@ -15,7 +15,7 @@
 		
 		<Element shortcut="CTRL+7" id="opengrok">
 			<cmds>
-				<cmd env ="ECLIPSE" value="http://opengrok/base" />
+				<cmd env ="ECLIPSE" value="http://opengrok.hyd.deshaw.com/__ENCLOSING_PROJ__/search?q=__ENCLOSING_TYPE__" />
 			</cmds>
         </Element>
 </Elements>
