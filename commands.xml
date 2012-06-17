@@ -9,7 +9,7 @@
     
     <Element shortcut="CTRL+8" id="current_file_np">
         <cmds>
-            <cmd env ="WIN" value="notepad __CURRENT_FILE__" />
+            <cmd env ="WIN" value="C:\\Program Files (x86)\\Notepad++\\notepad++.exe __CURRENT_FILE__" />
         </cmds>
      </Element>
 
