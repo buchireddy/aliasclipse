@@ -26,9 +26,10 @@ import aliasclipse.XMLFileParser.MenuItem;
  */
 public class ExecutionEnvironment
 {
-	private static final String ENCLOSING_TYPE = "__ENCLOSING_TYPE__";
+	private static final String ENCLOSING_TEXT_TYPE = "__ENCLOSING_TEXT_OR_TYPE__";
 	private static final String ENCLOSING_PROJ = "__ENCLOSING_PROJ__";
 	private static final String CURRENT_FILE   = "__CURRENT_FILE__";
+	private static final String SELECTED_TEXT   = "__SELECTED_TEXT__";
 	
 	private final ArrayList<String> myCommands;
 	private final ArrayList<MenuItem.ENV> myEnvs;
@@ -48,8 +49,7 @@ public class ExecutionEnvironment
      */
     public boolean execute()
     {
-        System.out.println("Executing: " + myCommands + " envs " + myEnvs);
-        test();
+        //System.out.println("Executing: " + myCommands + " envs " + myEnvs);
         
         for (int i = 0; i < myCommands.size(); i++) {
             String command = interpolate(myCommands.get(i));
@@ -78,12 +78,27 @@ public class ExecutionEnvironment
     private String interpolate(String string) {
 		
     	string = string.replaceAll(ENCLOSING_PROJ, getProjName());
-    	string = string.replaceAll(ENCLOSING_TYPE, getFileElementWithoutExtn());
+    	string = string.replaceAll(ENCLOSING_TEXT_TYPE, getEnclosingTextOrType());
     	string = string.replaceAll(CURRENT_FILE, getFullOSPath());
+    	string = string.replaceAll(SELECTED_TEXT, getSelectedText());
     	
 		return string;
 	}
 
+    /**
+     * Returns selected text or the enclosing type.
+     */
+    private String getEnclosingTextOrType()
+    {
+    	if (getSelectedText() != null) {
+    		return getSelectedText();
+    	}
+    	else {
+    		return getFileElementWithoutExtn();
+    	}
+    	
+    }
+    
     /**
      * Returns current project name.
      */
@@ -94,6 +109,9 @@ public class ExecutionEnvironment
 		return null;
 	}
 
+	/**
+	 * Runs command in eclipse environment.
+	 */
 	private boolean runEclipseAction(String command)
     {
 		if (command.contains("http:")) {
@@ -102,6 +120,9 @@ public class ExecutionEnvironment
         return true;        
     }
 
+	/**
+	 * Runs command in windows environment.
+	 */
     private boolean runWinCommand(String command)
     {
     	if (command.contains("http:")) {
@@ -119,6 +140,9 @@ public class ExecutionEnvironment
         return true;
     }
     
+    /**
+     * Runs command in unix environment.
+     */
     private boolean runUnixCommand(String command)
     {
         return Exec.executeSshCommand(command);
@@ -150,6 +174,9 @@ public class ExecutionEnvironment
         return null;
     }
 
+    /**
+     * Returns the current active file from the workbench.
+     */
     private IFile getCurrentFile()
     {
         IEditorPart activeEditor = 
@@ -208,6 +235,9 @@ public class ExecutionEnvironment
         }
     }
     
+    /**
+     * Shows given url in internal browser.
+     */
     public void showInInternalBrowser(String url)
     {
         try {

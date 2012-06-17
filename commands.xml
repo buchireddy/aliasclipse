@@ -15,13 +15,13 @@
 
     <Element shortcut="CTRL+6" id="opengrok_local">
         <cmds>
-            <cmd env ="ECLIPSE" value="http://opengrok.hyd.deshaw.com/__ENCLOSING_PROJ__/search?q=__ENCLOSING_TYPE__" />
+            <cmd env ="ECLIPSE" value="http://opengrok.hyd.deshaw.com/__ENCLOSING_PROJ__/search?q=__ENCLOSING_TEXT_OR_TYPE__" />
         </cmds>
     </Element>
 
     <Element shortcut="CTRL+SHIFT+6" id="opengrok_external">
         <cmds>
-            <cmd env ="WIN" value="http://opengrok.hyd.deshaw.com/__ENCLOSING_PROJ__/search?q=__ENCLOSING_TYPE__" />
+            <cmd env ="WIN" value="http://opengrok.hyd.deshaw.com/__ENCLOSING_PROJ__/search?q=__ENCLOSING_TEXT_OR_TYPE__" />
         </cmds>
     </Element>
 </Elements>
